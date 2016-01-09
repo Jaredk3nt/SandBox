@@ -13,12 +13,10 @@ def create_phonebook(file_name):
 		for line in f:
 			line = line.strip('\n')
 			if (count % 2) == 0:
-				print "name" , line
 				name = line
 			else:
 				number = line
 				p_book[name] = number
-				print "p_book : " , p_book[name]
 			count = count + 1
 	return p_book
 
@@ -26,11 +24,27 @@ def create_phonebook(file_name):
 def print_numbers(name_list, p_book):
 	for name in name_list:
 		number = p_book.get(name, "NONE")
-		if(number == ):
+		if(number == "NONE"):
+			print "That name is not found in the phonebook"
+		else:
 			print (name + " : " + number)
 
 
 #run body of code
 p_book = create_phonebook("entries.txt")
+
+#command line user interaction
+print "Created phonebook from entries.txt\nPlease type a name below to search (type 'end' to stop program):"
+running = True
+while running:
+	name = input()
+	if name == "end":
+		running = False
+	else:
+		print p_book.get(name, "That name is not in the phonebook")
+
+
+
+#test print 
 name_list = ['sam', 'hi', 'jard', 'madz']
 print_numbers(name_list, p_book)
